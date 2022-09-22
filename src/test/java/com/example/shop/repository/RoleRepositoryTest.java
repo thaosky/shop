@@ -8,6 +8,8 @@ import org.springframework.boot.test.autoconfigure.jdbc.AutoConfigureTestDatabas
 import org.springframework.boot.test.autoconfigure.orm.jpa.DataJpaTest;
 import org.springframework.test.annotation.Rollback;
 
+import java.util.List;
+
 import static org.assertj.core.api.Assertions.assertThat;
 
 
@@ -16,7 +18,7 @@ import static org.assertj.core.api.Assertions.assertThat;
 @Rollback(value = false)
 class RoleRepositoryTest {
     @Autowired
-   private RoleRepository repository;
+    private RoleRepository repository;
 
     @Test
     public void testCreateFirstRole() {
@@ -25,5 +27,19 @@ class RoleRepositoryTest {
 
         assertThat(savedRole.getId()).isGreaterThan(0);
     }
+
+    @Test
+    public void testCreateRestRole() {
+        RoleEntity roleSalePerson = new RoleEntity("SalesPerson",
+                "Manage product price, customers, shipping, orders and sales report");
+        RoleEntity roleEditor = new RoleEntity("Editor",
+                "Manage categories, brands, products, articles and menu");
+        RoleEntity roleShipper = new RoleEntity("Shipper",
+                "View products, view oders and update oder status");
+        RoleEntity roleAssistant = new RoleEntity("Assistant",
+                "Manage questions and  reviews");
+        repository.saveAll(List.of(roleSalePerson, roleEditor, roleShipper, roleAssistant));
+    }
+
 
 }
