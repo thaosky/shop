@@ -35,7 +35,7 @@ class RoleRepositoryTest {
         RoleEntity roleEditor = new RoleEntity("Editor",
                 "Manage categories, brands, products, articles and menu");
         RoleEntity roleShipper = new RoleEntity("Shipper",
-                "View products, view oders and update oder status");
+                "View products, view orders and update oder status");
         RoleEntity roleAssistant = new RoleEntity("Assistant",
                 "Manage questions and  reviews");
         repository.saveAll(List.of(roleSalePerson, roleEditor, roleShipper, roleAssistant));
