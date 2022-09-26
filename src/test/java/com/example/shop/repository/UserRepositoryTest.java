@@ -84,5 +84,6 @@ class UserRepositoryTest {
     @Test
     public void deleteUser_shouldSuccess() {
         userRepository.deleteById(2);
+        userRepository.findById(2);
     }
 }
