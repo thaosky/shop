@@ -8,3 +8,4 @@ public interface BookService {
 
     Book getById(Long id) throws BookNotFoundException;
 }
+

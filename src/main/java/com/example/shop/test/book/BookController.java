@@ -28,6 +28,4 @@ public class BookController {
         Book book = bookService.getById(id);
         return new ResponseEntity<>(book, HttpStatus.OK);
     }
-
-
 }
