@@ -1,9 +1,7 @@
 package com.example.shop.entity;
 
-import lombok.AllArgsConstructor;
-import lombok.Getter;
-import lombok.NoArgsConstructor;
-import lombok.Setter;
+import lombok.*;
+import org.springframework.context.annotation.Lazy;
 
 import javax.persistence.*;
 import java.util.HashSet;
@@ -52,6 +50,7 @@ public class UserEntity {
             joinColumns = @JoinColumn(name = "user_id"), // khóa ngoại trỏ đến bảng hiện tại
             inverseJoinColumns = @JoinColumn(name = "role_id") // khóa ngoại trỏ đến thuộc tính dưới
     )
+    @EqualsAndHashCode.Exclude
     private Set<RoleEntity> roleEntities = new HashSet<>();
 
     public void addRole(RoleEntity role) {

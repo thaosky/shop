@@ -2,7 +2,7 @@ package com.example.shop.service;
 
 import com.example.shop.entity.UserEntity;
 import com.example.shop.repository.UserRepository;
-import com.fasterxml.jackson.databind.util.BeanUtil;
+import org.apache.catalina.User;
 import org.springframework.beans.BeanUtils;
 import org.springframework.stereotype.Service;
 
@@ -21,13 +21,14 @@ public class UserService {
         return (List<UserEntity>) repository.findAll();
     }
 
-    public UserEntity saveUser(UserEntity user) {
-      Optional<UserEntity> optionalUserEntity =  repository.findById(user.getId());
-        UserEntity savedUser;
-        if (optionalUserEntity.isPresent()) {
-          BeanUtils.copyProperties(user, optionalUserEntity.get());
-      }
+    public UserEntity updateUser(UserEntity user) throws Exception {
+        Optional<UserEntity> optionalUserEntity = repository.findById(user.getId());
+        UserEntity savedUser = optionalUserEntity.orElseThrow(Exception::new);
+        BeanUtils.copyProperties(user, savedUser);
+        return repository.save(savedUser);
+    }
 
-        repository.save(savedUser);
+    public UserEntity createUser(UserEntity user) {
+        return repository.save(user);
     }
 }
