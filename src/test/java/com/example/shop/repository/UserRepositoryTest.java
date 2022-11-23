@@ -86,4 +86,11 @@ class UserRepositoryTest {
         userRepository.deleteById(2);
         userRepository.findById(2);
     }
+
+    @Test
+    public void findUserByEmail_shouldSuccess() {
+        String email = "thaohsk@gmail.com";
+        boolean isDuplicate = userRepository.findByEmail(email).isPresent();
+        assertThat(isDuplicate).isTrue();
+    }
 }
