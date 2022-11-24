@@ -24,7 +24,6 @@ public class RoleEntity {
     private ERole code;
 
     @Column(length = 40)
-    @Enumerated(EnumType.STRING)
     private String name;
 
     @Column(length = 150, nullable = false)
