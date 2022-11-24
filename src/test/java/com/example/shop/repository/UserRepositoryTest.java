@@ -29,7 +29,7 @@ class UserRepositoryTest {
     @Test
     public void createUser_withOneRole_shouldSuccess() {
         RoleEntity roleAdmin = testEntityManager.find(RoleEntity.class, 1);
-        UserEntity thao = new UserEntity("thaohsk@gmail.com", "thao123", "Nguyen", "Thao");
+        UserEntity thao = new UserEntity("thao","thaohsk@gmail.com", "thao123", "Nguyen", "Thao");
         thao.addRole(roleAdmin);
 
         UserEntity savedUser = userRepository.save(thao);
@@ -40,7 +40,7 @@ class UserRepositoryTest {
     public void createUser_withTwoRole_shouldSuccess() {
         RoleEntity roleAssistant = new RoleEntity(5);
         RoleEntity roleEditor = new RoleEntity(3);
-        UserEntity lamlam = new UserEntity("lam@gmail.com", "lam123", "Nguyen", "Lam Lam");
+        UserEntity lamlam = new UserEntity("lam","lam@gmail.com", "lam123", "Nguyen", "Lam Lam");
         lamlam.addRole(roleAssistant);
         lamlam.addRole(roleEditor);
 

@@ -8,7 +8,7 @@ import java.util.HashSet;
 import java.util.Set;
 
 @Entity
-@Table(name = "USERS")
+@Table(name = "USER")
 @Getter
 @Setter
 @NoArgsConstructor
@@ -21,6 +21,9 @@ public class UserEntity {
 
     @Column(length = 128, nullable = false, unique = true)
     private String email;
+
+    @Column(length = 128, nullable = false, unique = true)
+    private String username;
 
     @Column(length = 64, nullable = false)
     // because we use a password encoded for user's password, encoded pass length = 64
@@ -37,7 +40,8 @@ public class UserEntity {
 
     private boolean enabled;
 
-    public UserEntity(String email, String password, String firstName, String lastName) {
+    public UserEntity(String username, String email, String password, String firstName, String lastName) {
+        this.username = username;
         this.email = email;
         this.password = password;
         this.firstName = firstName;
@@ -46,7 +50,7 @@ public class UserEntity {
 
     @ManyToMany
     @JoinTable(
-            name = "users_roles", // tên join table
+            name = "user_role", // tên join table
             joinColumns = @JoinColumn(name = "user_id"), // khóa ngoại trỏ đến bảng hiện tại
             inverseJoinColumns = @JoinColumn(name = "role_id") // khóa ngoại trỏ đến thuộc tính dưới
     )

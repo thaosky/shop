@@ -9,7 +9,7 @@ import javax.persistence.*;
 import java.util.Objects;
 
 @Entity
-@Table(name = "ROLES")
+@Table(name = "ROLE")
 @Getter
 @Setter
 @AllArgsConstructor
@@ -19,16 +19,32 @@ public class RoleEntity {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Integer id;
 
-    @Column(length = 40, nullable = false, unique = true)
+    @Column(nullable = false, unique = true)
+    @Enumerated(EnumType.STRING)
+    private ERole code;
+
+    @Column(length = 40)
+    @Enumerated(EnumType.STRING)
     private String name;
 
     @Column(length = 150, nullable = false)
     private String description;
 
-    public RoleEntity(String name, String description) {
+    public RoleEntity(ERole code, String description) {
+        this.code = code;
+        this.description = description;
+    }
+
+    public RoleEntity(ERole code) {
+        this.code = code;
+    }
+
+    public RoleEntity(ERole code, String name, String description) {
+        this.code = code;
         this.name = name;
         this.description = description;
     }
+
     public RoleEntity(Integer id) {
         this.id = id;
     }

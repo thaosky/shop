@@ -19,6 +19,10 @@ public class SecurityConfig extends WebSecurityConfigurerAdapter {
 
     @Override
     protected void configure(HttpSecurity http) throws Exception {
-        http.authorizeHttpRequests().anyRequest().permitAll().and().csrf().disable();
+        http.authorizeHttpRequests()
+                .anyRequest().permitAll()
+                .and().csrf().disable()
+                .formLogin().loginPage("/login")
+        ;
     }
 }
