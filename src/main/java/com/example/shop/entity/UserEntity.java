@@ -17,7 +17,7 @@ public class UserEntity {
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    private Integer id;
+    private Long id;
 
     @Column(length = 128, nullable = false, unique = true)
     private String email;
@@ -25,8 +25,7 @@ public class UserEntity {
     @Column(length = 128, nullable = false, unique = true)
     private String username;
 
-    @Column(length = 64, nullable = false)
-    // because we use a password encoded for user's password, encoded pass length = 64
+    @Column(length = 64, nullable = false)  //sử dụng password encode length = 64
     private String password;
 
     @Column(name = "first_name", length = 45, nullable = false)
